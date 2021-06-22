@@ -1,6 +1,7 @@
 const questionForm = document.createElement('form'),
       questionLabel = document.createElement('label'),
       questionInput = document.createElement('input'),
+      displayQuestionDiv = document.createElement('div'),
       questionParagraph = document.createElement('p'),
       questionSubmitButton = document.createElement('button'),
       answers = document.createElement('div'),
@@ -26,7 +27,8 @@ const questionForm = document.createElement('form'),
         'magic8ball_18.png',
         'magic8ball_19.png',
         'magic8ball_20.png',
-      ];
+      ],
+      askAgainButton = document.createElement('button');
 
 // Question Form Setup
 questionLabel.innerHTML = 'Ask me anything!<br>';
@@ -35,6 +37,8 @@ questionSubmitButton.innerText = 'Ask';
 // Magic 8 Ball Answers Setup
 answerImage.src = 'img/magic8ball_start.png';
 answerImage.alt = '';
+displayQuestionDiv.style.display = 'none';
+askAgainButton.innerText = 'Ask Another Question';
 
 
 // Layout Setup
@@ -42,7 +46,9 @@ questionForm.appendChild(questionLabel);
 questionLabel.appendChild(questionInput);
 questionForm.appendChild(questionSubmitButton);
 document.body.appendChild(questionForm);
-document.body.appendChild(questionParagraph);
+displayQuestionDiv.appendChild(questionParagraph);
+displayQuestionDiv.appendChild(askAgainButton);
+document.body.appendChild(displayQuestionDiv);
 answers.appendChild(answerImage);
 document.body.appendChild(answers);
 
@@ -53,10 +59,25 @@ function ask(e){
     return;
   }
   questionParagraph.innerText = questionInput.value;
-  console.log(questionParagraph);
   questionForm.style.display = 'none';
-  let answerImageIndex = Math.floor(Math.random()*20);
-  answerImage.src = 'img/'+answerList[answerImageIndex];
+  displayQuestionDiv.style.display = 'block';
+  answerImage.classList.add("fade");
+  setTimeout(function(){
+    let answerImageIndex = Math.floor(Math.random()*20);
+    answerImage.src = 'img/'+answerList[answerImageIndex];
+    answerImage.classList.remove("fade");
+  }, 1000);
 }
 
 questionForm.addEventListener('submit', function(e){ask(e)});
+
+
+askAgainButton.addEventListener('click', function(){
+  questionForm.style.display = 'block';
+  displayQuestionDiv.style.display = 'none';
+  answerImage.classList.add("fade");
+  setTimeout(function(){
+    answerImage.src = 'img/magic8ball_start.png';
+    answerImage.classList.remove("fade");
+  }, 1000);
+});

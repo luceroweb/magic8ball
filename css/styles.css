@@ -1,0 +1,29 @@
+body {
+  background: #000 url("../img/starfieldBG.jpg") no-repeat center center fixed;
+  text-align: center;
+  font-family: "Helvetica";
+  font-weight: bold;
+  line-height: 1.8em;
+  font-size: 1.5em;
+  color: #FFF;
+  height: 100%;
+  background-size: cover;
+}
+
+p{
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+}
+
+img {
+  width: 500px;
+  max-width: 100%;
+}
+
+img {
+  opacity: 1;
+  transition: opacity 1s; 
+}
+
+.fade {
+  opacity: 0;
+}
