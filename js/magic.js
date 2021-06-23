@@ -35,9 +35,10 @@ questionLabel.innerHTML = 'Ask me anything!<br>';
 questionSubmitButton.innerText = 'Ask';
 
 // Magic 8 Ball Answers Setup
+answers.id = 'answers';
 answerImage.src = 'img/magic8ball_start.png';
 answerImage.alt = '';
-displayQuestionDiv.style.display = 'none';
+displayQuestionDiv.classList.add("fade");
 askAgainButton.innerText = 'Ask Another Question';
 
 
@@ -59,10 +60,11 @@ function ask(e){
     return;
   }
   questionParagraph.innerText = questionInput.value;
-  questionForm.style.display = 'none';
-  displayQuestionDiv.style.display = 'block';
+  questionForm.classList.add("fade");
+  displayQuestionDiv.classList.remove("fade");
   answerImage.classList.add("fade");
   setTimeout(function(){
+    questionInput.value = ''
     let answerImageIndex = Math.floor(Math.random()*20);
     answerImage.src = 'img/'+answerList[answerImageIndex];
     answerImage.classList.remove("fade");
@@ -73,11 +75,11 @@ questionForm.addEventListener('submit', function(e){ask(e)});
 
 
 askAgainButton.addEventListener('click', function(){
-  questionForm.style.display = 'block';
-  displayQuestionDiv.style.display = 'none';
+  displayQuestionDiv.classList.add("fade");
   answerImage.classList.add("fade");
   setTimeout(function(){
     answerImage.src = 'img/magic8ball_start.png';
     answerImage.classList.remove("fade");
+    questionForm.classList.remove("fade");
   }, 1000);
 });

@@ -10,7 +10,27 @@ body {
   background-size: cover;
 }
 
-p{
+div#answers {
+  z-index: 0;
+}
+
+div:not(#answers) {
+  z-index: 50;
+}
+
+form {
+  margin-top: 28px;
+  z-index: 100;
+}
+
+form, div:not(#answers) {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+p {
+  margin-bottom: 0;
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
 }
 
@@ -19,11 +39,12 @@ img {
   max-width: 100%;
 }
 
-img {
+form, img, div {
   opacity: 1;
   transition: opacity 1s; 
 }
 
 .fade {
   opacity: 0;
+  z-index: 50;
 }
